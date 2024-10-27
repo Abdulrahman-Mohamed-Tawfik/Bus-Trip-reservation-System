@@ -1,0 +1,227 @@
+--create tabels only
+  create table driver 
+  (d_id number (5) ,f_name char (15) ,l_name char(15),d_email char(20) ,birth_date char(15) , d_salary number (5) , bus_id number (4));
+ 
+ 
+  create table passenger
+  ( p_id number(5),f_name char (15) ,l_name char(15) , p_address char (40),
+  gender char (1), p_birth_date char(8), ticket_no number(5),trip_no number (3));
+  
+
+  create table bus
+  ( bus_id number (3) , plat_no number (4) , b_model char(10) ,b_capacity number(2));
+   
+    
+  create table trip
+  ( trip_no number (3), start_time char (8), end_time char (8), start_point char (20),end_point char (20));
+   
+   
+  create table ticket
+  ( ticket_no number(5) ,d_id number (5) ,trip_no number (3) , start_date char (8), expire_date char (8) ,t_cost number (3));
+    
+    
+  create table dependent
+  ( dependent_id number (5) , dependent_name char(15) , gender char (1), p_birth_date char(9) ,relationship char (10));
+  
+  
+  create table trip_bus
+ ( trip_no number (3), bus_id number (3));
+   
+   
+  create table p_phone_no
+  ( p_id number(5) , p_phone_no number(15));
+
+
+--add constraints for tables
+  alter table bus
+  add primary key (bus_id);
+  
+  
+  alter table trip
+  add primary key (trip_no);
+  
+  
+  alter table driver
+  add primary key (d_id)
+  add foreign key (bus_id) references bus(bus_id);
+  
+  
+  alter table ticket
+  add primary key (ticket_no)
+  add foreign key (d_id) references driver (d_id)
+  add foreign key (trip_no) references trip(trip_no);
+
+  
+  alter table passenger
+  add primary key (p_id) 
+  add foreign key (ticket_no) references ticket(ticket_no)
+  add foreign key (trip_no) references trip(trip_no);
+  
+  
+  alter table dependent
+  add foreign key (dependent_id) references driver(d_id);
+  
+  
+  alter table trip_bus
+  add foreign key (trip_no) references bus(bus_id)
+  add foreign key (bus_id) references bus(bus_id);
+  
+  
+  alter table p_phone_no
+  add foreign key (p_id) references passenger(p_id);
+  
+--insert 6 rows for every table
+  insert into trip (trip_no, start_time,end_time,start_point,end_point)
+  values(1,'10:00 pm','1:00 am','Cairo-manshia','Monufia');
+  
+  insert into trip(trip_no, start_time,end_time,start_point,end_point)
+  values(2,'12:15 pm','12:15 am','Cairo-Zaitoon','Ghardaqah');
+  
+  insert into trip(trip_no, start_time,end_time,start_point,end_point)
+  values(3,'10:00 pm','1:00 am','Giza','Port-lsaeed');
+  
+  insert into trip(trip_no, start_time,end_time,start_point,end_point)
+  values(4,'4:00 pm','5:00 am','Esamielia','Raas elbar');
+
+  insert into trip(trip_no, start_time,end_time,start_point,end_point)
+  values(5,'5:00 pm','6:00 am','Esamielia','Raas elbar');
+
+  insert into trip(trip_no, start_time,end_time,start_point,end_point)
+  values(6,'6:00 pm','6:30 am','Giza-Imbaba','');
+
+  insert into bus (bus_id ,plat_no ,b_model ,b_capacity)
+  values(1,4673,'Honda',50);
+  
+  insert into bus (bus_id ,plat_no ,b_model ,b_capacity)
+  values(2,864,'Nissan',20);
+  
+  insert into bus (bus_id ,plat_no ,b_model ,b_capacity)
+  values(3,7321,'Honda',80);
+  
+  insert into bus (bus_id ,plat_no ,b_model ,b_capacity)
+  values(4 , 6212 ,'Chevrolet', 90);
+
+  insert into bus (bus_id ,plat_no ,b_model ,b_capacity)
+  values(5 , 6213 ,'Chevrolet', 90);
+
+  insert into bus (bus_id ,plat_no ,b_model ,b_capacity)
+  values(6 , 6213 ,'Mercedes', 30);
+
+  insert into driver (d_id ,f_name ,l_name ,d_email ,birth_date ,d_salary ,bus_id)
+  values(1 , 'Amr' ,'Mohamed' ,'amr5641@gmail.com','1/4/1980' ,2000 , 1);
+
+  insert into driver (d_id ,f_name ,l_name ,d_email ,birth_date ,d_salary ,bus_id)
+  values(2 , 'Abdulrahman' ,'Mohamed' ,'abdo@gmail.com','30/8/2002' ,2000 , 2 );
+
+  insert into driver (d_id ,f_name ,l_name ,d_email ,birth_date ,d_salary ,bus_id)
+  values (3 ,'Abdulrahman' , 'Shaheen' ,'abdo5445@gmail.com','22/12/1995',8000,3);
+
+  insert into driver (d_id ,f_name ,l_name ,d_email ,birth_date ,d_salary ,bus_id)
+  values(4 ,'Hassan' , 'Ali' ,'hasan98@gmail.com' ,'8/9/2000' ,5000 ,4);
+  
+  insert into driver (d_id ,f_name ,l_name ,d_email ,birth_date ,d_salary ,bus_id)
+  values(5 ,'Ibrahim' ,'Hamada' ,'ibrahem43@gmail.com' , '3/12/1990' ,7900 ,5);
+
+  insert into driver (d_id ,f_name ,l_name ,d_email ,birth_date ,d_salary ,bus_id)
+  values(6 , 'Youssef' ,'Mohamed' ,'yousef4213@gmail.com','1/4/1980' ,2000 , 6);
+  
+  insert into ticket(ticket_no,d_id ,trip_no , start_date,expire_date ,t_cost)
+  values (11,1,1,'12/22','12/25',60);
+  
+  insert into ticket(ticket_no,d_id ,trip_no , start_date,expire_date ,t_cost)
+  values (22,2,2,'2/2','2/5',80);
+  
+  insert into ticket(ticket_no,d_id ,trip_no , start_date,expire_date ,t_cost)
+  values (33,3,3,'6/8','6/11',90);
+  
+  insert into ticket(ticket_no,d_id ,trip_no , start_date,expire_date ,t_cost)
+  values (44,4,4,'9/4','9/7',40);
+
+  insert into ticket(ticket_no,d_id ,trip_no , start_date,expire_date ,t_cost)
+  values (55,5,5,'9/4','9/5',40);
+
+  insert into ticket(ticket_no,d_id ,trip_no , start_date,expire_date ,t_cost)
+  values (66,6,6,'9/5','9/7',60);
+
+  insert into passenger (p_id , f_name ,l_name ,p_address ,gender ,p_birth_date ,ticket_no , trip_no)
+  values(1 ,'Abdulrahman' ,'Mohamed' , 'cairo-abbasia-abbas-23','m','3/3/2003',11,1);
+  
+  insert into passenger (p_id , f_name ,l_name ,p_address ,gender ,p_birth_date ,ticket_no , trip_no)
+  values(2 ,'Ahmed' ,'Ali' , 'Cairo-Abbasia-Montazah-25','m','5/3/2012',22,2);
+  
+  insert into passenger (p_id , f_name ,l_name ,p_address ,gender ,p_birth_date ,ticket_no , trip_no)
+  values(3 ,'shaimaa' ,'salah' , 'Cairo-zaitoon-montazah-25','f','5/3/2005',33,3);
+  
+  insert into passenger (p_id , f_name ,l_name ,p_address ,gender ,p_birth_date ,ticket_no , trip_no)
+  values(4 ,'sara' ,'ahmed' , 'Cairo-abbasia-salah eldeen-21','f','5/8/2000',44,4);
+
+  insert into passenger (p_id , f_name ,l_name ,p_address ,gender ,p_birth_date ,ticket_no , trip_no)
+  values(5 ,'mahmoud' ,'ahmed' , 'Cairo-abbasia-salah eldeen-21','m','5/8/2000',55,5);
+
+  insert into passenger (p_id , f_name ,l_name ,p_address ,gender ,p_birth_date ,ticket_no , trip_no)
+  values(6 ,'Mohamed' ,'Amr' , 'giza-imbaba-monira-mohamedshemis-4','m','5/8/2003',66,6);
+
+  insert into dependent(dependent_id , dependent_name, gender , p_birth_date, relationship)
+  values (1,'Amr','m','2/2/2015','son');
+  
+  insert into dependent(dependent_id , dependent_name, gender , p_birth_date, relationship)
+  values(2,'Omar','m','2/5/2012','son');
+  
+  insert into dependent(dependent_id , dependent_name, gender , p_birth_date, relationship)
+  values(3,'Shaimaa','f','1/2/1998','wife');
+  
+  insert into dependent(dependent_id , dependent_name, gender , p_birth_date, relationship)
+  values(4,'Asmaa','f','2/10/2013','duaghter');
+  
+  insert into dependent(dependent_id , dependent_name, gender , p_birth_date, relationship)
+  values(5,'Shaimaa','f','2/10/2013','duaghter');
+
+  insert into dependent(dependent_id , dependent_name, gender , p_birth_date, relationship)
+  values(6,'Asmaa','f','3/12/1997','wife');
+
+  insert into trip_bus(trip_no, bus_id)
+  values(1,1);
+
+  insert into trip_bus(trip_no, bus_id)
+  values(2,2);
+
+  insert into trip_bus(trip_no, bus_id)
+  values(3,3);
+
+  insert into trip_bus(trip_no, bus_id)
+  values(4,4);
+
+  insert into trip_bus(trip_no, bus_id)
+  values(5,5);
+
+  insert into trip_bus(trip_no, bus_id)
+  values(6,6);
+
+  insert into p_phone_no(p_id, p_phone_no )
+  values(1,01113793255);
+
+  insert into p_phone_no(p_id, p_phone_no )
+  values(2,01559001769);
+
+  insert into p_phone_no(p_id, p_phone_no )
+  values(3,01112457989);
+
+  insert into p_phone_no(p_id, p_phone_no )
+  values(4,01001257989);
+
+  insert into p_phone_no(p_id, p_phone_no )
+  values(5,01223468798);
+
+  insert into p_phone_no(p_id, p_phone_no )
+  values(6,01563463792);
+
+--to make check box
+  Alter table passenger 
+             add ( have_a_freind char(3));
+  Update passenger set have_a_freind = 'yes'
+                          where gender = 'm' ;
+  Update passenger set have_a_freind = 'no'
+                          where gender = 'f';
+
+--save all we have done
+  commit;

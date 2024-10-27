@@ -1,0 +1,18 @@
+1.Check box *✔
+2.Radio buttons *✔
+3.Combo box (dropdown list) *✔
+4.List of Values (LOV) *✔
+5.Triggers *✔
+6.Alert *✔
+7.Master Detail *✔
+8.Calculated fields (formula & summary) *✔
+
+first: triggers, Calculated fields (formula & summary)
+
+Second: Master Detail, Alert, Combo box (dropdown list)
+
+Third: Check box, Radio buttons, List of Values (LOV)
+
+
+Team ID	  Time	                    Project Title	        Member Name	Section Number	Member Name	Section Number	Member Name	Section Number	Member Name	Section Number	Member Name	Section Number	Member Name	       Section Number	Member Name	Section Number
+90	  Sunday (2/1): 8:15 PM	Bus Trips Reservation System	عبدالرحمن محمد توفيق	11	محمد فوزي حافظ                	20	        إبراهيم حمادة إبراهيم	17	        حسن محمد حسن	8	        مصطفى إسماعيل محمد	7	        يوسف محمد أحمد كمال الدين	27	يوسف محمد عبد العال               	27
